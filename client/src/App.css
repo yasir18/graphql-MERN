@@ -7,6 +7,38 @@
   pointer-events: none;
 }
 
+table {
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+
+}
+
+.clientHeader{
+  
+    height: 50px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 30px;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+
+td{
+  text-align: center;
+  height: 30px;
+  
+}
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #e8e5e5;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -36,3 +68,4 @@
     transform: rotate(360deg);
   }
 }
+

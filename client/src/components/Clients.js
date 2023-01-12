@@ -1,33 +1,46 @@
-import { gql, useQuery } from "@apollo/client";
-
-const GET_CLIENTS = gql`
-  query getClients {
-    clients {
-      id
-      name
-      email
-      phone
-    }
-  }
-`;
+import { useQuery } from "@apollo/client";
+import ClientRow from "./ClientRow";
+import { GET_CLIENTS } from "../queries/ClientQueries";
+import spinner from "../assets/spinner.gif";
 
 function Clients() {
   const { loading, error, data } = useQuery(GET_CLIENTS);
 
-  if (loading) return <div>Loading</div>;
-  if (error) return <div> Error</div>;
+  if (loading)
+    return (
+      <div>
+        <img
+          src={spinner}
+          alt="Loading..."
+          style={{
+            width: "100px",
+            height: "100px",
+            margin: "auto",
+            display: "block",
+          }}
+        />
+      </div>
+    );
+  if (error) return <div> Error in fetching data from graphql</div>;
 
   return (
     <>
-      {data.clients.map((d) => {
-        return (
-          <div>
-            <p>{d.name}</p>
-            <p>{d.email}</p>
-            <p>{d.phone}</p>
-          </div>
-        );
-      })}
+      <div className="clientHeader">Clients</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.clients.map((d) => {
+            return <ClientRow key={d.id} data={d} />;
+          })}
+        </tbody>
+      </table>
     </>
   );
 }

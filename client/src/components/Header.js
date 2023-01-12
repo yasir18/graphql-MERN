@@ -9,6 +9,7 @@ function Header() {
       <Toolbar>
         <img
           src={logo}
+          alt="logo"
           style={{ height: "25px", width: "25px", marginRight: "20px" }}
         />
         <Typography variant="h6" component="div">
