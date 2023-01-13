@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/Header";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import Clients from "./components/Clients";
+import Project from "./components/Project";
 
 //To supress warning, conflict between incoming and existing change
 const cache = new InMemoryCache({
@@ -33,6 +34,7 @@ function App() {
     <div className="App">
       <ApolloProvider client={client}>
         <Header />
+        <Project />
         <Clients />
       </ApolloProvider>
     </div>
