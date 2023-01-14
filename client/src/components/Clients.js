@@ -2,7 +2,6 @@ import { useQuery } from "@apollo/client";
 import ClientRow from "./ClientRow";
 import { GET_CLIENTS } from "../queries/ClientQueries";
 import spinner from "../assets/spinner.gif";
-import AddClientModal from "./AddClientModal";
 
 function Clients() {
   const { loading, error, data } = useQuery(GET_CLIENTS);
@@ -27,7 +26,6 @@ function Clients() {
   return (
     <>
       <div className="clientHeader">Clients</div>
-      <AddClientModal />
       <table>
         <thead>
           <tr>

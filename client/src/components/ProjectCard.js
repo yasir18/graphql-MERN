@@ -12,7 +12,12 @@ export default function ProjectCard(props) {
   return (
     <div style={{ width: "300px", height: "200px" }}>
       <Card
-        sx={{ minWidth: 200, height: "150px", backgroundColor: "gainsboro" }}
+        sx={{
+          minWidth: 200,
+          height: "150px",
+          backgroundColor: "#f2f2f2",
+          boxShadow: "5px 5px lightgray",
+        }}
       >
         <CardContent>
           <Typography sx={{ fontSize: 20 }} variant="h5" gutterBottom>
@@ -22,7 +27,9 @@ export default function ProjectCard(props) {
           <Typography variant="body2">Status: {status}</Typography>
         </CardContent>
         <CardActions style={{ justifyContent: "center" }}>
-          <Button size="small">View</Button>
+          <a href={`/project/${id}`} style={{ textDecoration: "none" }}>
+            <Button size="small">View</Button>
+          </a>
         </CardActions>
       </Card>
     </div>
