@@ -80,7 +80,6 @@ export default function AddProjectModal() {
     return '"Something went wrong whle fetching clientIds"';
   }
 
-  console.log(data);
   return (
     <>
       {!loading && !error && (
