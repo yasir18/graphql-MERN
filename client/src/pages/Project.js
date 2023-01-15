@@ -1,17 +1,25 @@
 import Header from "../components/Header";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
-import { GET_PROJECT } from "../queries/ProjectQueries";
-import { useQuery } from "@apollo/client";
+import { GET_PROJECT, GET_PROJECTS } from "../queries/ProjectQueries";
+import { DELETE_PROJECT } from "../mutations/projectMutation";
+import { useQuery, useMutation } from "@apollo/client";
 import spinner from "../assets/spinner.gif";
+import { useNavigate } from "react-router-dom";
+import EditProject from "../components/EditProject";
 
 export default function Project() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_PROJECT, { variables: { id } });
-
+  const [deleteProject] = useMutation(DELETE_PROJECT, {
+    variables: { id },
+    onCompleted: () => navigate("/"),
+    refetchQueries: [{ query: GET_PROJECTS }],
+  });
   if (loading)
     return (
       <div>
@@ -28,6 +36,11 @@ export default function Project() {
       </div>
     );
   if (error) return <div> Error in fetching data from graphql</div>;
+
+  const deleteProjectCB = () => {
+    deleteProject(id);
+  };
+
   return (
     <>
       <Header />
@@ -57,6 +70,15 @@ export default function Project() {
               <PhoneIcon /> {data.project.client.phone}
             </p>
           </div>
+          <EditProject project={data.project} />
+          <Button
+            variant="contained"
+            color="error"
+            style={{ margin: "10px" }}
+            onClick={deleteProjectCB}
+          >
+            Delete Project
+          </Button>
         </div>
       </div>
     </>
