@@ -1,11 +1,11 @@
 {
   "name": "graphql-mern",
   "version": "1.0.0",
-  "description": "",
+  "description": "",  
   "main": "index.js",
   "scripts": {
-    "start":"node server/index.js",
-    "dev":"nodemon server/index.js"
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
   },
   "author": "",
   "license": "ISC",

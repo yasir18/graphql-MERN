@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-export default function () {
+export default function NotFound() {
   return (
     <div>
       <p>Sorry, the page doesn't exist</p>

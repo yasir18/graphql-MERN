@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  frontend:
+    build: ./client
+    container_name: client
+    # restart: always
+    ports:
+      - 3000:3000
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  backend:
+    build: ./server
+    container_name: server
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+
